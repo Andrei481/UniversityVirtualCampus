@@ -5,12 +5,12 @@
 class User{
     private:
         std::string name;
-        uint8_t age;
+        uint16_t age;
         char gender;
         std::string phone_number;
         std::string username, password;
     public:
-        virtual void f() = 0;
+        virtual void getUserInfo() = 0;
         
         // Getters
         
@@ -36,7 +36,7 @@ class User{
             this->name = name;
         }
 
-        void setAge(uint8_t age)
+        void setAge(uint16_t age)
         {
             this->age = age;
         }
@@ -45,6 +45,7 @@ class User{
         {
             this->username = username;
         }
+    friend class Student;
 };
 
 class Student : private User{
@@ -52,6 +53,16 @@ class Student : private User{
         std::vector<std::string> courses;
         double course_average, annual_average;
     public:
+        Student(std::string name, uint16_t age)
+        {
+            this->name = name;
+            this->age = age;
+        }
+        void getUserInfo()
+        {
+            std::cout << "Name: " << name << std::endl << "Age: " << age <<std::endl; 
+        }
+
         void checkGrades()
         {
 
